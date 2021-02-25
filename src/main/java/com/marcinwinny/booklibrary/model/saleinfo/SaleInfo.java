@@ -8,8 +8,8 @@ public class SaleInfo {
     private Country country;
     private Saleability saleability;
     private Boolean isEbook;
-    private ListPrice listPrice;
-    private RetailPrice retailPrice;
+    private Price listPrice;
+    private Price retailPrice;
     private String buyLink;
     private List<Offer> offers;
 }

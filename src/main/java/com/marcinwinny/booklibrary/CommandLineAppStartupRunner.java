@@ -33,8 +33,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
             JSONObject object = (JSONObject) obj;
 
-            JSONArray booksList = (JSONArray) object.get("items");
-            booksList.forEach(book -> parseBookObject( (JSONObject) book) );
+            JSONArray booksJsonList = (JSONArray) object.get("items");
+
+            booksJsonList.forEach(book -> parseBookObject( (JSONObject) book) );
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -46,11 +47,12 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     public static void parseBookObject(JSONObject jsonBook) {
 //        Get book object within list
-        String id = (String) jsonBook.get("maturityRating");
+        String id = (String) jsonBook.get("etag");
         System.out.println(id);
+//        String y = jsonBook.toString();
 
-//        Gson gson = new Gson();
-//        Book book = gson.fromJson(jsonBook, Book.class);
+        Gson gson = new Gson();
+//        Book book = gson.fromJson(y, Book.class);
 
     }
 }

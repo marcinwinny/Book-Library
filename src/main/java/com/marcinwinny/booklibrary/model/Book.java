@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 @Entity
@@ -20,13 +21,14 @@ import javax.persistence.Entity;
 @Builder
 public class Book {
 
-    private String kind;
+    @Id
     private String id;
+    private String kind;
     private String etag;
     private String selfLink;
-    private VolumeInfo volumeInfo;
-    private SaleInfo saleInfo;
-    private AccessInfo accessInfo;
-    private SearchInfo searchInfo;
+//    private VolumeInfo volumeInfo;
+//    private SaleInfo saleInfo;
+//    private AccessInfo accessInfo;
+//    private SearchInfo searchInfo;
 
 }

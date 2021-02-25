@@ -8,8 +8,8 @@ public class AccessInfo {
     private Boolean embeddable;
     private Boolean publicDomain;
     private TextToSpeechPermission textToSpeechPermission;
-    private Epub epub;
-    private Pdf pdf;
+    private Format epub;
+    private Format pdf;
     private String webReaderLink;
     private AccessViewStatus accessViewStatus;
     private Boolean quoteSharingAllowed;
