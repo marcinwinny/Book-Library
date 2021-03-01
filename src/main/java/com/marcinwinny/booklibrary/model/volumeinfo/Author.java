@@ -1,4 +1,4 @@
-package com.marcinwinny.booklibrary.model.saleinfo;
+package com.marcinwinny.booklibrary.model.volumeinfo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,9 +13,9 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Offer {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long finskyOfferType;
+    private String name;
 }

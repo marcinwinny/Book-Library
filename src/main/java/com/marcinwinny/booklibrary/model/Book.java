@@ -9,26 +9,34 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Book {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    //TODO: Implement String id
+//    private String id;
     private String kind;
     private String etag;
     private String selfLink;
-//    private VolumeInfo volumeInfo;
-//    private SaleInfo saleInfo;
-//    private AccessInfo accessInfo;
-//    private SearchInfo searchInfo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private VolumeInfo volumeInfo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private SaleInfo saleInfo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private AccessInfo accessInfo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private SearchInfo searchInfo;
 
 }
