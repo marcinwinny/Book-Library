@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class PriceDto {
+    private Long id;
     private Float amount;
     private Float amountInMicros;
     private String currencyCode;

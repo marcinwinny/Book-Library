@@ -16,9 +16,9 @@ public class SaleInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Country country;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Saleability saleability;
     private Boolean isEbook;
     @OneToOne(cascade = CascadeType.ALL)

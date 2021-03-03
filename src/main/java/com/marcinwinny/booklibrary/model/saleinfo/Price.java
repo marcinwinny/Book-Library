@@ -15,11 +15,8 @@ public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private Float amount;
-    @Column
     private Float amountInMicros;
-    @Column
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private CurrencyCode currencyCode;
 }

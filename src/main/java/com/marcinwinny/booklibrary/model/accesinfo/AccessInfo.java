@@ -16,13 +16,13 @@ public class AccessInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Country country;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Viewability viewability;
     private Boolean embeddable;
     private Boolean publicDomain;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TextToSpeechPermission textToSpeechPermission;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
@@ -31,7 +31,7 @@ public class AccessInfo {
     @JoinColumn(name = "id")
     private Format pdf;
     private String webReaderLink;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private AccessViewStatus accessViewStatus;
     private Boolean quoteSharingAllowed;
 }

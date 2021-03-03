@@ -48,12 +48,4 @@ class SaleInfoMapperTest {
         Assertions.assertEquals(saleInfo.getRetailPrice().getCurrencyCode(), CurrencyCode.PLN);
         Assertions.assertEquals(saleInfo.getBuyLink(), "XXX");
     }
-
-    @Test
-    void mapDtoToPrice() {
-    }
-
-    @Test
-    void mapDtoToOffer() {
-    }
 }

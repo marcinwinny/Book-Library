@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class SaleInfoDto {
+    private Long id;
     private String country;
     private String saleability;
     private Boolean isEbook;

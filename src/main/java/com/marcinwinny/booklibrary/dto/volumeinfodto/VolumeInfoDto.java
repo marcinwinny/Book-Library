@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class VolumeInfoDto {
+    private Long id;
     private String title;
     private String subtitle;
     private List<String> authors;

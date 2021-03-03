@@ -10,18 +10,15 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface SaleInfoMapper {
 
     SaleInfoMapper INSTANCE = Mappers.getMapper( SaleInfoMapper.class );
 
-    @Mapping(target = "id", ignore = true)
     SaleInfo mapDtoToSaleInfo(SaleInfoDto saleInfoDto);
 
-    @Mapping(target = "id", ignore = true)
     Price mapDtoToPrice(PriceDto priceDto);
 
-    @Mapping(target = "id", ignore = true)
     Offer mapDtoToOffer(OfferDto offerDto);
 
 }

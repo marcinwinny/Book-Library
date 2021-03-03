@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class AccessInfoDto {
+    private Long id;
     private String country;
     private String viewability;
     private Boolean embeddable;

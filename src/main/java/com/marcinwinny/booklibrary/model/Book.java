@@ -21,8 +21,8 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //TODO: Implement String id
-//    private String id;
+    @Column(name = "book_id")
+    private String bookId;
     private String kind;
     private String etag;
     private String selfLink;

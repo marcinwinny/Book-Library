@@ -46,25 +46,25 @@ class VolumeInfoMapperTest {
         VolumeInfo volumeInfo = VolumeInfoMapper.INSTANCE.mapDtoToVolumeInfo(volumeInfoDto);
 
         Assertions.assertNotNull(volumeInfo);
-        Assertions.assertEquals(volumeInfo.getTitle(), "title");
-        Assertions.assertEquals(volumeInfo.getPublisher(), "Helion");
-        Assertions.assertEquals(volumeInfo.getPublishedDate(), "2013-12-09");
-        Assertions.assertEquals(volumeInfo.getDescription(), "tick");
-        Assertions.assertEquals(volumeInfo.getReadingModes().getText(), true);
-        Assertions.assertEquals(volumeInfo.getReadingModes().getImage(), true);
-        Assertions.assertEquals(volumeInfo.getPageCount(), 864L);
-        Assertions.assertEquals(volumeInfo.getPrintType(), PrintType.BOOK);
-        Assertions.assertEquals(volumeInfo.getMaturityRating(), MaturityRating.NOT_MATURE);
-        Assertions.assertEquals(volumeInfo.getAllowAnonLogging(), true);
-        Assertions.assertEquals(volumeInfo.getContentVersion(), "2.4.5");
-        Assertions.assertEquals(volumeInfo.getImageLinks().getSmallThumbnail(), "xx");
-        Assertions.assertEquals(volumeInfo.getImageLinks().getThumbnail(), "yy");
-        Assertions.assertEquals(volumeInfo.getLanguage(), "pl");
-        Assertions.assertEquals(volumeInfo.getPreviewLink(), "XX");
-        Assertions.assertEquals(volumeInfo.getInfoLink(), "ss");
-        Assertions.assertEquals(volumeInfo.getCanonicalVolumeLink(), "dd");
-        Assertions.assertEquals(volumeInfo.getAuthors().get(0), "Lionel Messi");
-        Assertions.assertEquals(volumeInfo.getAuthors().get(1), "Ben Simmons");
-        Assertions.assertEquals(volumeInfo.getCategories().get(0), "Computers");
+        Assertions.assertEquals("title", volumeInfo.getTitle());
+        Assertions.assertEquals("Helion", volumeInfo.getPublisher());
+        Assertions.assertEquals("2013-12-09", volumeInfo.getPublishedDate());
+        Assertions.assertEquals("tick", volumeInfo.getDescription());
+        Assertions.assertEquals(true, volumeInfo.getReadingModes().getText());
+        Assertions.assertEquals(true, volumeInfo.getReadingModes().getImage());
+        Assertions.assertEquals(864L, volumeInfo.getPageCount());
+        Assertions.assertEquals(PrintType.BOOK, volumeInfo.getPrintType());
+        Assertions.assertEquals(MaturityRating.NOT_MATURE, volumeInfo.getMaturityRating());
+        Assertions.assertEquals(true, volumeInfo.getAllowAnonLogging());
+        Assertions.assertEquals("2.4.5", volumeInfo.getContentVersion());
+        Assertions.assertEquals("xx", volumeInfo.getImageLinks().getSmallThumbnail());
+        Assertions.assertEquals("yy", volumeInfo.getImageLinks().getThumbnail());
+        Assertions.assertEquals("pl", volumeInfo.getLanguage());
+        Assertions.assertEquals("XX", volumeInfo.getPreviewLink());
+        Assertions.assertEquals("ss", volumeInfo.getInfoLink());
+        Assertions.assertEquals("dd", volumeInfo.getCanonicalVolumeLink());
+        Assertions.assertEquals("Lionel Messi", volumeInfo.getAuthors().get(0).getName());
+        Assertions.assertEquals("Ben Simmons", volumeInfo.getAuthors().get(1).getName());
+        Assertions.assertEquals("Computers", volumeInfo.getCategories().get(0));
     }
 }

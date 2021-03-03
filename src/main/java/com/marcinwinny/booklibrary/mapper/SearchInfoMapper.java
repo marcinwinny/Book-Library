@@ -6,12 +6,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface SearchInfoMapper {
 
     SearchInfoMapper INSTANCE = Mappers.getMapper( SearchInfoMapper.class );
 
-    @Mapping(target = "id", ignore = true)
     SearchInfo mapDtoToSearchInfo(SearchInfoDto searchInfoDto);
 
 }

@@ -23,7 +23,6 @@ public class VolumeInfo {
     private List<Author> authors;
     private String publisher;
     private String publishedDate;
-//    private LocalDate publishedDate;
     @Column(length = 5000)
     private String description;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -32,14 +31,13 @@ public class VolumeInfo {
     @JoinColumn(name = "id")
     private ReadingModes readingModes;
     private Long pageCount;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private PrintType printType;
     @ElementCollection
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<String> categories;
     private Float averageRating;
     private Long ratingsCount;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private MaturityRating maturityRating;
     private Boolean allowAnonLogging;
     private String contentVersion;

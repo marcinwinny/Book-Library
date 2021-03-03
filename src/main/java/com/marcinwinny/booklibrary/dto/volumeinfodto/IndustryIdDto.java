@@ -8,6 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IndustryIdDto {
+    private Long id;
     private String type;
     private String identifier;
+
+    public IndustryIdDto(String type, String identifier) {
+        this.type = type;
+        this.identifier = identifier;
+    }
 }

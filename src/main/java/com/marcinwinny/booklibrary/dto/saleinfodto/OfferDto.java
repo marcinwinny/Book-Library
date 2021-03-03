@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class OfferDto {
+    private Long id;
     private Long finskyOfferType;
     private PriceDto listPrice;
     private PriceDto retailPrice;

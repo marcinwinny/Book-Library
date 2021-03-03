@@ -8,12 +8,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface AccessInfoMapper {
 
     AccessInfoMapper INSTANCE = Mappers.getMapper( AccessInfoMapper.class );
 
-    @Mapping(target = "id", ignore = true)
     AccessInfo mapDtoToAccessInfo(AccessInfoDto accessInfoDto);
 
     Format mapDtoToFormat(FormatDto formatDto);

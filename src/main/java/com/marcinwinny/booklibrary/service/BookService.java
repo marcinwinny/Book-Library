@@ -1,5 +1,6 @@
 package com.marcinwinny.booklibrary.service;
 
+import com.google.common.cache.LoadingCache;
 import com.marcinwinny.booklibrary.dto.BookDto;
 import com.marcinwinny.booklibrary.exception.BookNotFoundException;
 import com.marcinwinny.booklibrary.mapper.BookMapper;
@@ -7,25 +8,41 @@ import com.marcinwinny.booklibrary.model.Book;
 import com.marcinwinny.booklibrary.model.volumeinfo.Author;
 import com.marcinwinny.booklibrary.repository.BookRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-@AllArgsConstructor
+//@AllArgsConstructor
 public class BookService {
 
-    private final BookRepository bookRepository;
-    private final BookMapper bookMapper;
+    @Autowired
+    private BookRepository bookRepository;
+    @Autowired
+    private LoadingCache<Long, BookDto> cache;
+
+    private BookMapper bookMapper = BookMapper.INSTANCE;
 
     public List<BookDto> getAll() {
         return bookRepository.findAll()
                 .stream()
                 .map(bookMapper::mapBookToDto)
                 .collect(Collectors.toList());
+    }
+
+    public BookDto getByIsbn(String isbn) {
+        int isbnLength = isbn.length();
+        Book book = bookRepository.findByVolumeInfo_IndustryIdentifiers_Identifier(isbn)
+                .orElseThrow(() -> new BookNotFoundException("Book not found"));
+        BookDto bookDto = bookMapper.mapBookToDto(book);
+        Long genId = bookDto.getGenId();
+        cache.put(genId, bookDto);
+        return bookDto;
     }
 
     public List<BookDto> getAllByCategory(String category) {
@@ -35,10 +52,8 @@ public class BookService {
                         .anyMatch(cat -> cat.equals(category)))
                 .map(bookMapper::mapBookToDto)
                 .collect(Collectors.toList());
-
     }
 
-    //TODO: Make it more rebust if there is any???
     public BookDto getFirstWithPagesMoreThan(Long pages) {
         Book book = bookRepository.findAll()
                 .stream()
@@ -57,13 +72,27 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public Object getByIsbn(Long isbn) {
-        int isbnLength = isbn.toString().length();
-        if (isbnLength == 13) {
+    //TODO: REVERSE ORDER
+    public List<BookDto> getBestBooksToReadInMonth(Integer howManyPages, Integer howManyHours) {
+        int daysInMonth = 30;
+        int pagesInMonth = howManyPages * howManyHours * daysInMonth;
 
-        }
-        else if (isbnLength == 10){
+        return bookRepository.findAll().stream()
+                .filter(book -> book.getVolumeInfo().getPageCount() != null)
+                .filter(book -> book.getVolumeInfo().getPageCount() >= pagesInMonth)
+//                .sorted(Comparator.comparingDouble(Book::getVolumeInfo::getAverageRating))
+                .map(bookMapper::mapBookToDto)
+                .collect(Collectors.toList());
+    }
 
-        }
+    public Collection<BookDto> getRecentlyViewed() {
+        return cache.asMap().values();
+    }
+
+    public BookDto getById(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with id= " + id));
+        return bookMapper.mapBookToDto(book);
     }
 }
+

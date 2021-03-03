@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,24 +27,27 @@ public class AuthorService {
     }
 
     public List<AuthorDto> getAllWithRatings() {
-        List<Book> books = bookRepository.findAll();
-        List<AuthorDto> authorDtos = new ArrayList<>();
-
-        authorRepository.findAll()
-                .stream()
-                .forEach(author ->{
-                    double average = books.stream()
-                            .filter(book -> book.getVolumeInfo().getAuthors().contains(author))
-                            .filter(book -> book.getVolumeInfo().getAverageRating() != null)
-                            .map(Book::getVolumeInfo)
-                            .mapToDouble(VolumeInfo::getAverageRating)
-                            .average().orElse(0.0);
-                    authorDtos.add(new AuthorDto(author.getName(), average));
-                });
-
-        return authorDtos.stream()
-                .sorted(Comparator.comparingDouble(AuthorDto::getAverageRating)
-                        .reversed())
+        List<Book> bookList = bookRepository.findAll();
+        List<Author> authorList = authorRepository.findAll();
+        return authorList.stream()
+                .map(author -> groupBooksByAuthor(author, bookList))
+                .sorted(Comparator.comparingDouble(AuthorDto::getAverageRating).reversed())
                 .collect(Collectors.toList());
+    }
+
+    private AuthorDto groupBooksByAuthor(Author author, List<Book> bookList) {
+        double average;
+        average = bookList.stream()
+                .map(Book::getVolumeInfo)
+                .filter(volumeInfo -> volumeInfo.getAuthors().contains(author))
+                .filter(volumeInfo -> volumeInfo.getAverageRating() != null)
+                .mapToDouble(VolumeInfo::getAverageRating)
+                .average().orElse(0.0);
+
+        return AuthorDto.builder()
+                .id(author.getId())
+                .name(author.getName())
+                .averageRating(average)
+                .build();
     }
 }
