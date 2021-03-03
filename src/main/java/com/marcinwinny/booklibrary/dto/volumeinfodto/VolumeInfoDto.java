@@ -1,12 +1,10 @@
 package com.marcinwinny.booklibrary.dto.volumeinfodto;
 
-import com.marcinwinny.booklibrary.model.volumeinfo.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Data

@@ -2,7 +2,6 @@ package com.marcinwinny.booklibrary.model.accesinfo;
 
 import com.marcinwinny.booklibrary.model.Country;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

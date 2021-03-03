@@ -4,24 +4,21 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.marcinwinny.booklibrary.dto.BookDto;
-import com.marcinwinny.booklibrary.dto.volumeinfodto.IndustryIdDto;
-import com.marcinwinny.booklibrary.dto.volumeinfodto.VolumeInfoDto;
 import com.marcinwinny.booklibrary.service.BookService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class CacheConfig {
 
-    @Autowired
     private BookService bookService;
+
+    public CacheConfig(@Lazy BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @Bean
     public LoadingCache<Long, BookDto> loadingCache() {
@@ -38,7 +35,6 @@ public class CacheConfig {
                 .expireAfterWrite(60, TimeUnit.MINUTES)
                 .maximumSize(5)
                 .build(loader);
-
         return cache;
     }
 }

@@ -5,9 +5,7 @@ import com.marcinwinny.booklibrary.dto.BookDto;
 import com.marcinwinny.booklibrary.exception.BookNotFoundException;
 import com.marcinwinny.booklibrary.mapper.BookMapper;
 import com.marcinwinny.booklibrary.model.Book;
-import com.marcinwinny.booklibrary.model.volumeinfo.Author;
 import com.marcinwinny.booklibrary.repository.BookRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +16,6 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-//@AllArgsConstructor
 public class BookService {
 
     @Autowired
@@ -36,7 +33,6 @@ public class BookService {
     }
 
     public BookDto getByIsbn(String isbn) {
-        int isbnLength = isbn.length();
         Book book = bookRepository.findByVolumeInfo_IndustryIdentifiers_Identifier(isbn)
                 .orElseThrow(() -> new BookNotFoundException("Book not found"));
         BookDto bookDto = bookMapper.mapBookToDto(book);
@@ -64,15 +60,6 @@ public class BookService {
         return bookMapper.mapBookToDto(book);
     }
 
-    public List<BookDto> findAllByAuthor(Author author) {
-        return bookRepository.findAll()
-                .stream()
-                .filter(book -> book.getVolumeInfo().getAuthors().contains(author))
-                .map(bookMapper::mapBookToDto)
-                .collect(Collectors.toList());
-    }
-
-    //TODO: REVERSE ORDER
     public List<BookDto> getBestBooksToReadInMonth(Integer howManyPages, Integer howManyHours) {
         int daysInMonth = 30;
         int pagesInMonth = howManyPages * howManyHours * daysInMonth;
@@ -80,7 +67,6 @@ public class BookService {
         return bookRepository.findAll().stream()
                 .filter(book -> book.getVolumeInfo().getPageCount() != null)
                 .filter(book -> book.getVolumeInfo().getPageCount() >= pagesInMonth)
-//                .sorted(Comparator.comparingDouble(Book::getVolumeInfo::getAverageRating))
                 .map(bookMapper::mapBookToDto)
                 .collect(Collectors.toList());
     }

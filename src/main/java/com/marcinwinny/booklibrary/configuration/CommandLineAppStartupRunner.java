@@ -5,7 +5,6 @@ import com.marcinwinny.booklibrary.dto.BookDto;
 import com.marcinwinny.booklibrary.mapper.BookMapper;
 import com.marcinwinny.booklibrary.model.Book;
 import com.marcinwinny.booklibrary.repository.BookRepository;
-import lombok.AllArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,16 +21,20 @@ import java.io.IOException;
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CommandLineAppStartupRunner.class);
     @Autowired
     private BookRepository bookRepository;
 
     private BookMapper bookMapper = BookMapper.INSTANCE;
+    private static final Logger LOG = LoggerFactory.getLogger(CommandLineAppStartupRunner.class);
 
     @Override
     public void run(String... args) {
-        readFromJSONFile("src/main/resources/books.json");
-        LOG.info("Loaded from file");
+        String pathToFile = "src/main/resources/books.json";
+        if (args.length > 0) {
+            pathToFile = args[0];
+        }
+        readFromJSONFile(pathToFile);
+        LOG.info("Loaded data from file, path= " + pathToFile);
     }
 
     private void readFromJSONFile(String jsonFile) {

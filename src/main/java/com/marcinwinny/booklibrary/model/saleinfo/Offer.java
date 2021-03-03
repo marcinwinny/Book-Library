@@ -16,9 +16,9 @@ public class Offer {
     private Long id;
     private Long finskyOfferType;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "list_price")
     private Price listPrice;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "retail_price")
     private Price retailPrice;
 }

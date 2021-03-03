@@ -3,7 +3,6 @@ package com.marcinwinny.booklibrary.model.volumeinfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,4 +19,9 @@ public class IndustryId {
     private Long id;
     private Type type;
     private String identifier;
+
+    public IndustryId(Type type, String identifier) {
+        this.type = type;
+        this.identifier = identifier;
+    }
 }

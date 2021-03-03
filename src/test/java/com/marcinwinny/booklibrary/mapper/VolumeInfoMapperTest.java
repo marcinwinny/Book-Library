@@ -4,7 +4,6 @@ import com.marcinwinny.booklibrary.dto.volumeinfodto.ImageLinksDto;
 import com.marcinwinny.booklibrary.dto.volumeinfodto.IndustryIdDto;
 import com.marcinwinny.booklibrary.dto.volumeinfodto.ReadingModesDto;
 import com.marcinwinny.booklibrary.dto.volumeinfodto.VolumeInfoDto;
-import com.marcinwinny.booklibrary.model.Country;
 import com.marcinwinny.booklibrary.model.volumeinfo.MaturityRating;
 import com.marcinwinny.booklibrary.model.volumeinfo.PrintType;
 import com.marcinwinny.booklibrary.model.volumeinfo.VolumeInfo;
@@ -13,8 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class VolumeInfoMapperTest {
 
@@ -36,7 +33,7 @@ class VolumeInfoMapperTest {
                 .maturityRating("NOT_MATURE")
                 .allowAnonLogging(true)
                 .contentVersion("2.4.5")
-                .imageLinks(new ImageLinksDto("xx","yy"))
+                .imageLinks(new ImageLinksDto("xx", "yy"))
                 .language("pl")
                 .previewLink("XX")
                 .infoLink("ss")

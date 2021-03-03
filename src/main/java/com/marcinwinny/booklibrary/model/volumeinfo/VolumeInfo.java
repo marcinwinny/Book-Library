@@ -1,17 +1,18 @@
 package com.marcinwinny.booklibrary.model.volumeinfo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class VolumeInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

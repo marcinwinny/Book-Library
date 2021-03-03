@@ -1,7 +1,6 @@
 package com.marcinwinny.booklibrary.controller;
 
 import com.marcinwinny.booklibrary.dto.volumeinfodto.AuthorDto;
-import com.marcinwinny.booklibrary.model.volumeinfo.Author;
 import com.marcinwinny.booklibrary.service.AuthorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,5 +22,4 @@ public class AuthorController {
     public ResponseEntity<List<AuthorDto>> getAllAuthorsWithRatings() {
         return ResponseEntity.status(HttpStatus.OK).body(authorService.getAllWithRatings());
     }
-
- }
+}

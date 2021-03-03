@@ -22,20 +22,16 @@ public class AuthorService {
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
 
-    public List<Author> getAll() {
-        return authorRepository.findAll();
-    }
-
     public List<AuthorDto> getAllWithRatings() {
         List<Book> bookList = bookRepository.findAll();
         List<Author> authorList = authorRepository.findAll();
         return authorList.stream()
-                .map(author -> groupBooksByAuthor(author, bookList))
+                .map(author -> getAuthorsAverageRating(author, bookList))
                 .sorted(Comparator.comparingDouble(AuthorDto::getAverageRating).reversed())
                 .collect(Collectors.toList());
     }
 
-    private AuthorDto groupBooksByAuthor(Author author, List<Book> bookList) {
+    private AuthorDto getAuthorsAverageRating(Author author, List<Book> bookList) {
         double average;
         average = bookList.stream()
                 .map(Book::getVolumeInfo)

@@ -22,10 +22,10 @@ public class SaleInfo {
     private Saleability saleability;
     private Boolean isEbook;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "list_price")
     private Price listPrice;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "retail_price")
     private Price retailPrice;
     private String buyLink;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

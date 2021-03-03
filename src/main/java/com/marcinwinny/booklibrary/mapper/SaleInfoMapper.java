@@ -7,13 +7,12 @@ import com.marcinwinny.booklibrary.model.saleinfo.Offer;
 import com.marcinwinny.booklibrary.model.saleinfo.Price;
 import com.marcinwinny.booklibrary.model.saleinfo.SaleInfo;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface SaleInfoMapper {
 
-    SaleInfoMapper INSTANCE = Mappers.getMapper( SaleInfoMapper.class );
+    SaleInfoMapper INSTANCE = Mappers.getMapper(SaleInfoMapper.class);
 
     SaleInfo mapDtoToSaleInfo(SaleInfoDto saleInfoDto);
 

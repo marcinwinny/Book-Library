@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("scheduledTask")
 @AllArgsConstructor
 public class ScheduledTask {
 
-    private final LoadingCache<Long, BookDto> cache;
+    private LoadingCache<Long, BookDto> cache;
 
     //execute every 60 minutes = 3 600 000 milliseconds
     @Scheduled(fixedRate = 3600000)

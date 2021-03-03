@@ -10,8 +10,6 @@ import com.marcinwinny.booklibrary.model.accesinfo.Viewability;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AccessInfoMapperTest {
 
     @Test
@@ -45,7 +43,4 @@ class AccessInfoMapperTest {
         Assertions.assertEquals(accessInfo.getQuoteSharingAllowed(), false);
     }
 
-    @Test
-    void mapDtoToFormat() {
-    }
 }
