@@ -13,43 +13,43 @@ with customers.
 * JUnit 5 - testing framework
 
 ### How to run
-* Build the application, deploy it and run tests.
+ Build the application, deploy it and run tests.
 ```sh
 mvn deploy
 ```
-* Run application
+ Run application
 ```sh
 java -jar target/book-library-0.0.1-SNAPSHOT.jar
 ```
 
 ### API endpoints
 #### Book details endpoint
-* Returns a book identified by the given ISBN number in the form of a JSON document. Returns a 404 if the book does not exist in the data set.
+Returns a book identified by the given ISBN number in the form of a JSON document. Returns a 404 if the book does not exist in the data set.
 ```sh
 GET: /api/books/by-isbn/{isbn}
 ```
 #### Books category endpoint
-* Returns a list of all books that are assigned to the requested category.
+Returns a list of all books that are assigned to the requested category.
 ```sh
 GET: /api/books/by-category/{category}
 ```
 #### Book volume endpoint
-* Returns first book, which number of pages is greater than specified value. 
+Returns first book, which number of pages is greater than specified value. 
 ```sh
 GET: /api/books/pages-greater-than/{pages}
 ```
 #### The best books endpoint
-* Returns JSON document with a list of the best rated books which can be read in month. User can specify the number of pages he can read per hour and average number of hours he spends on reading during the day. 
+Returns JSON document with a list of the best rated books which can be read in month. User can specify the number of pages he can read per hour and average number of hours he spends on reading during the day. 
 ```sh
 GET: /api/books/best-books/{howManyPages}/{howManyHours}
 ```
 #### Recently viewed books
-* Returns JSON document with a list of 5 books recently viewed via details endpoint (described previously).
+Returns JSON document with a list of 5 books recently viewed via details endpoint (described previously).
 ```sh
 GET: /api/books/recently-viewed
 ```
 #### Rating endpoint
-* Returns JSON document with a list of all authors and their rating in descending order of the average rating of their books.
+Returns JSON document with a list of all authors and their rating in descending order of the average rating of their books.
 ```sh
 GET: /api/authors/ratings
 ```
