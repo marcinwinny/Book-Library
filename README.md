@@ -21,6 +21,10 @@ mvn deploy
 ```sh
 java -jar target/book-library-0.0.1-SNAPSHOT.jar
 ```
+ Run application with given dataset
+```sh
+java -jar target/book-library-0.0.1-SNAPSHOT.jar [path-to-file]
+```
 
 ### API endpoints
 #### Book details endpoint
